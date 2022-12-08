@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+
+    <link rel="stylesheet" href="{% static 'mystery/style.css' %}">
+</head>
+<body>
+    <h1>Мой дневник</h1>
+    <nav><a href="{% url 'add' %}">Добавить заметку</a></nav>
+    <h2>Рубрики:</h2>
+    <div>
+    {% for rubric in rubrics %}
+        <a href="/mystery/{{ rubric.pk }}/">{{ rubric.name }}</a>
+    {% endfor %}
+    </div>
+    <h2>Заметки:</h2>
+    {% for ph in photos %}
+        <div id="ph">
+            <h3>{{ ph.title }}</h3>
+            <p>{{ ph.context }}</p>
+            <p>Рубрика: <a href="/mystery/{{ ph.rubric.pk }}/">
+            {{ ph.rubric.name }}</a></p>
+            <p>{{ ph.published|date:"d.m.Y H:i:s" }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>

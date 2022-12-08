@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление заметки</title>
+    <link rel="stylesheet" href="{% static 'mystery/style.css' %}">
+</head>
+<body>
+    <h1>Добавление заметки</h1>
+    <div>
+    <a href="{% url 'index' %}">Главная</a>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Добавить">
+    </form>
+</body>
+</html>
